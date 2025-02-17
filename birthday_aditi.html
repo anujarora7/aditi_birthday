@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Aditi</title>
+    <style>
+        body {
+            text-align: center;
+            transition: background 0.5s, color 0.5s;
+            background: linear-gradient(135deg, #a8d5ba, #8ec5a8); /* Gradient green */
+            color: white;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            cursor: default; /* Normal cursor */
+            position: relative;
+        }
+        /* Animated Gradient Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            z-index: -1;
+            animation: moveBackground 10s infinite alternate;
+        }
+        @keyframes moveBackground {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(-20px) translateX(-20px); }
+        }
+        /* Floating Shapes */
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+        .shape.circle {
+            width: 100px;
+            height: 100px;
+        }
+        .shape.triangle {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+        }
+        .shape.square {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive; /* Fancy cursive font */
+            color: #d81b60; /* Darker pink for better visibility */
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8); /* White shadow for contrast */
+            animation: glow 2s infinite alternate, floatHeading 3s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4; }
+            100% { text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4; }
+        }
+        @keyframes floatHeading {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        .toggle-btn {
+            padding: 12px 24px;
+            background: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px;
+            transition: background 0.3s, color 0.3s, transform 0.3s;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .toggle-btn:hover {
+            background: #f4f4f4;
+            transform: scale(1.05);
+        }
+        .photo-gallery {
+            display: none;
+            justify-content: center;
+            flex-wrap: wrap;
+            transition: opacity 0.5s;
+            margin-top: 30px;
+        }
+        .photo-frame {
+            width: 220px;
+            height: 250px;
+            border: 6px dashed #ff69b4; /* Pink dashed border */
+            border-radius: 20px;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            transition: transform 0.5s;
+            transform: rotate(calc(-15deg + 30deg * var(--random-tilt)));
+            box-shadow: 4px 4px 10px rgba(255, 105, 180, 0.4);
+        }
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.1);
+        }
+        .photo-frame img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .photo-frame img:hover {
+            transform: scale(1.05);
+        }
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            display: none;
+        }
+        .heart {
+            width: 20px;
+            height: 20px;
+            background: red;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            opacity: 0.7;
+            transform: translateX(-50%) rotate(0deg);
+            animation: floatHearts 4s linear infinite;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes floatHearts {
+            0% { top: 100%; opacity: 1; }
+            100% { top: -10%; opacity: 0; }
+        }
+        #goofy-message {
+            transition: opacity 0.5s;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        /* Pink Theme Enhancements */
+        .pink-theme {
+            background: linear-gradient(135deg, #f8c8dc, #ffafbd); /* Gradient pink */
+            color: #333;
+        }
+        .pink-theme h1 {
+            color: #d81b60; /* Darker pink for better visibility */
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8); /* White shadow for contrast */
+        }
+        .pink-theme .toggle-btn {
+            background: #ff69b4;
+            color: white;
+        }
+        .pink-theme .toggle-btn:hover {
+            background: #ff5aa5;
+        }
+        .pink-theme .photo-frame {
+            border-color: #ff69b4; /* Pink border for consistency */
+        }
+        .pink-theme #theme-message {
+            color: #333;
+        }
+        .pink-theme #goofy-message {
+            color: rgba(51, 51, 51, 0.8);
+        }
+        /* Countdown Timer */
+        #countdown {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #d81b60;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        /* Personalized Message Reveal */
+        #secret-message {
+            display: none;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #d81b60;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        #reveal-button {
+            padding: 10px 20px;
+            background: #ff69b4;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+            transition: background 0.3s, transform 0.3s;
+        }
+        #reveal-button:hover {
+            background: #ff5aa5;
+            transform: scale(1.05);
+        }
+    </style>
+    <!-- Add Google Fonts for the fancy heading -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape circle" style="top: 10%; left: 5%; animation-duration: 8s;"></div>
+        <div class="shape triangle" style="top: 20%; left: 80%; animation-duration: 10s;"></div>
+        <div class="shape square" style="top: 50%; left: 30%; animation-duration: 12s;"></div>
+        <div class="shape circle" style="top: 70%; left: 60%; animation-duration: 9s;"></div>
+    </div>
+    <div class="container">
+        <h1>Happy Birthday, Aditi!</h1>
+        <p id="theme-message">Look at this beautiful green theme, just for you! 😆</p>
+        <p id="goofy-message">Toggle this if you can't handle the green! 😂</p>
+        <button class="toggle-btn" onclick="toggleTheme()">Toggle Theme</button>
+        
+        <!-- Countdown Timer -->
+        <div id="countdown"></div>
+        
+        <!-- Personalized Message Reveal -->
+        <button id="reveal-button" onclick="revealMessage()">Click for a Special Message!</button>
+        <div id="secret-message">
+            Aditi, you are the most amazing person I know. Wishing you a day filled with love, laughter, and joy! 💖
+        </div>
+        
+        <div class="photo-gallery" id="gallery">
+            <div class="photo-frame" style="--random-tilt: 0.1;"><img src="photo1.jpg" alt="Photo 1"></div>
+            <div class="photo-frame" style="--random-tilt: -0.3;"><img src="photo2.jpg" alt="Photo 2"></div>
+            <div class="photo-frame" style="--random-tilt: 0.2;"><img src="photo3.jpg" alt="Photo 3"></div>
+            <div class="photo-frame" style="--random-tilt: -0.1;"><img src="photo4.jpg" alt="Photo 4"></div>
+            <div class="photo-frame" style="--random-tilt: 0.3;"><img src="photo5.jpg" alt="Photo 5"></div>
+            <div class="photo-frame" style="--random-tilt: -0.2;"><img src="photo6.jpg" alt="Photo 6"></div>
+        </div>
+    </div>
+    <div class="hearts" id="hearts"></div>
+    
+    <audio id="music" autoplay>
+        <source src="kabhi_kabhi_aditi.mp3" type="audio/mp3">
+    </audio>
+    
+    <script>
+        let isMainTheme = false;
+        function toggleTheme() {
+            isMainTheme = !isMainTheme;
+            document.body.classList.toggle('pink-theme', isMainTheme);
+            document.getElementById('hearts').style.display = isMainTheme ? 'block' : 'none';
+            document.getElementById('theme-message').innerText = isMainTheme ? "Okay fine, here's something better! 💖" : "Look at this beautiful green theme, just for you! 😆";
+            document.getElementById('goofy-message').style.opacity = isMainTheme ? '0' : '1';
+            document.getElementById('gallery').style.display = isMainTheme ? 'flex' : 'none';
+            if (isMainTheme) generateHearts();
+        }
+        function generateHearts() {
+            const hearts = document.getElementById('hearts');
+            hearts.innerHTML = '';
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (2 + Math.random() * 3) + 's';
+                hearts.appendChild(heart);
+            }
+        }
+        // Countdown Timer
+        const birthday = new Date('2025-02-24'); // Replace with Aditi's birthday
+        const countdownElement = document.getElementById('countdown');
+        function updateCountdown() {
+            const now = new Date();
+            const diff = birthday - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s until Aditi's Birthday!`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        // Personalized Message Reveal
+        function revealMessage() {
+            document.getElementById('secret-message').style.display = 'block';
+            document.getElementById('reveal-button').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
