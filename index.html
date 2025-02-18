@@ -42,6 +42,10 @@
             display: none; /* Hide the pseudo-element in pink theme */
         }
 
+        .pink-theme {
+            background: linear-gradient(135deg, #f8c8dc, #ffafbd) !important; /* Ensure pink theme background is applied */
+        }
+
         @keyframes moveBackground {
             0% { transform: translateY(0) translateX(0); }
             100% { transform: translateY(-20px) translateX(-20px); }
@@ -188,11 +192,6 @@
             0%, 100% { transform: translateX(0); }
             10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
             20%, 40%, 60%, 80% { transform: translateX(5px); }
-        }
-
-        .pink-theme {
-            background: linear-gradient(135deg, #f8c8dc, #ffafbd);
-            color: #333;
         }
 
         .pink-theme .countdown,
@@ -348,28 +347,31 @@
             The special message is only available on Aditi's birthday (24th February)!
         </div>
         <div id="secret-message" class="secret-message">
-            Aditi, you are the most amazing person I know. Wishing you a day filled with love, laughter, and joy! 💖
+            <p>Happy Birthday Aditiii!!! 21st!! Congratulations😂 on completing 21 years on this planet. Thank you for all the things you do for me, us. Huuuhh😪... last year was a long year filled with happy and sad moments. I don't know how to express how grateful I am to have such a helping, kind, loving, beautiful, charming, hot, sexy, fantastic, magnificant, sublime, talented, pretty person like you in my life.</p> 
+			
+			<p>In this year we have fought, laughed, cried, travelled, celebrated, and have done many other things together😉 and i wish to continue doing that in the future also (maybe a little less fights(not that we fight a lot...but ya)). However, the only thing I would say and keep saying is THANK YOU SOO MUCH! for always being there for me in every situation.</p> 
+			<p>Aditi, you are the most amazing person I know. Wishing you a day filled with love, laughter, and joy! 💖</p>
         </div>
 
         <div class="photo-gallery" id="gallery">
             <div class="photo-frame">
                 <!-- Replace with high-resolution images -->
-                <img src=1.JPG alt="Photo 1">
+                <img src="1.JPG" alt="Photo 1">
             </div>
             <div class="photo-frame">
-                <img src=2.jpg alt="Photo 2">
+                <img src="2.jpg" alt="Photo 2">
             </div>
             <div class="photo-frame">
-                <img src=3.jpg alt="Photo 3">
+                <img src="3.jpg" alt="Photo 3">
             </div>
             <div class="photo-frame">
-                <img src=4.JPG alt="Photo 4">
+                <img src="4.JPG" alt="Photo 4">
             </div>
             <div class="photo-frame">
-                <img src=5.jpg alt="Photo 5">
+                <img src="5.jpg" alt="Photo 5">
             </div>
             <div class="photo-frame">
-                <img src=6.JPG alt="Photo 6">
+                <img src="6.JPG" alt="Photo 6">
             </div>
         </div>
     </div>
@@ -458,7 +460,7 @@
 
         function revealMessage() {
             const now = new Date();
-            const isBirthday = now.getMonth() === 1 && now.getDate() === 24; // February is month 1 (0-indexed)
+            const isBirthday = now.getMonth() === 1 && now.getDate() >= 24; // February is month 1 (0-indexed)
             if (isBirthday) {
                 document.getElementById('secret-message').style.display = 'block';
                 document.getElementById('reveal-button').style.display = 'none';
