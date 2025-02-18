@@ -22,6 +22,8 @@
             overflow-x: hidden;
             position: relative;
             cursor: default;
+            display: flex;
+            flex-direction: column;
         }
 
         body::before {
@@ -51,6 +53,7 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            flex: 1; /* Allow container to grow and push footer to the bottom */
         }
 
         h1 {
@@ -298,6 +301,26 @@
         .pink-theme .info-message {
             display: none; /* Hide info-message in pink theme by default */
         }
+
+        /* Footer Styles */
+        footer {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--secondary-color);
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: auto; /* Push footer to the bottom */
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -354,8 +377,13 @@
     <audio id="music" autoplay>
         <source src="kabhi kabhi aditi.mp3" type="audio/mpeg">
     </audio>
-
-    <script>
+	
+    <!-- Footer -->
+    <footer>
+        Made with love by <a href="https://example.com" target="_blank">Anuj Arora</a>😉 (with AI...ofc) LOL
+    </footer>
+    
+	<script>
         let isMainTheme = false;
         let countdownInterval = null;
 
