@@ -478,7 +478,7 @@
 
 				// Trigger vibration
 				if (navigator.vibrate) {
-					navigator.vibrate([50 100, 50]); // Vibrate pattern: 200ms on, 100ms off, 200ms on
+					navigator.vibrate([50, 50, 50, 50, 50, 50, 50]); // Vibrate pattern: 200ms on, 100ms off, 200ms on
 				}
 
 				setTimeout(() => button.classList.remove('shake'), 500); // Remove shake class after animation
