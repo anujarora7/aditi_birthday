@@ -464,19 +464,26 @@
         }
 
         function revealMessage() {
-            const now = new Date();
-            const isBirthday = now.getMonth() === 1 && now.getDate() >= 24; // February is month 1 (0-indexed)
-            if (isBirthday) {
-                document.getElementById('secret-message').style.display = 'block';
-                document.getElementById('reveal-button').style.display = 'none';
-                document.getElementById('info-message').style.display = 'none';
-            } else {
-                document.getElementById('info-message').style.display = 'block';
-                const button = document.getElementById('reveal-button');
-                button.classList.add('shake');
-                setTimeout(() => button.classList.remove('shake'), 500); // Remove shake class after animation
-            }
-        }
+			const now = new Date();
+			const isBirthday = now.getMonth() === 1 && now.getDate() >= 24; // February is month 1 (0-indexed)
+
+			if (isBirthday) {
+				document.getElementById('secret-message').style.display = 'block';
+				document.getElementById('reveal-button').style.display = 'none';
+				document.getElementById('info-message').style.display = 'none';
+			} else {
+				document.getElementById('info-message').style.display = 'block';
+				const button = document.getElementById('reveal-button');
+				button.classList.add('shake');
+
+				// Trigger vibration
+				if (navigator.vibrate) {
+					navigator.vibrate([200, 100, 200]); // Vibrate pattern: 200ms on, 100ms off, 200ms on
+				}
+
+				setTimeout(() => button.classList.remove('shake'), 500); // Remove shake class after animation
+			}
+		}
 		document.addEventListener("click", function () {
 			let audio = document.getElementById("music");
 			if (audio.paused) {
